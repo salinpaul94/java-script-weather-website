@@ -28,3 +28,9 @@ async function check_weather(city_name) {
 search_button.addEventListener("click", () => {
   check_weather(search_box.value);
 });
+
+search_box.addEventListener("keydown", (e) => {
+  if (e.key == "Enter") {
+    check_weather(search_box.value);
+  }
+});
