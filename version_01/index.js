@@ -26,9 +26,19 @@ async function check_weather(city_name) {
   const response = await fetch(
     api_url + `&q=${city_name}` + `&appid=${api_key}`
   );
-  let data = await response.json();
 
-  // console.log(data);
+  if (response.status == 404) {
+    document.querySelector(".error").style.display = "block";
+    document.querySelector(".weather").style.display = "none";
+  } else {
+    document.querySelector(".error").style.display = "none";
+    let data = await response.json();
+    show_data(data);
+  }
+}
+
+function show_data(data) {
+  console.log(data);
 
   document.querySelector(".weather_condition").innerHTML = data.weather[0].main;
   document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°C";
