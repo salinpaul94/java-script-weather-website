@@ -7,13 +7,16 @@
 
 const api_key = "2f6214368a9e52e6f08f4e60d2af1e44";
 const api_url =
-  "https://api.openweathermap.org/data/2.5/weather?units=metric&q=kochi";
+  "https://api.openweathermap.org/data/2.5/weather?units=metric&q=delhi";
 
 async function check_weather() {
   const response = await fetch(api_url + `&appid=${api_key}`);
   let data = await response.json();
 
   console.log(data);
+
+  document.querySelector(".city").innerHTML = data.name;
+  document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°C";
 }
 
 check_weather();
