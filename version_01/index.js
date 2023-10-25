@@ -10,5 +10,10 @@ const api_url =
   "https://api.openweathermap.org/data/2.5/weather?units=metric&q=kochi";
 
 async function check_weather() {
-  const response = await fetch(api_url + `appid=${api_key}`);
+  const response = await fetch(api_url + `&appid=${api_key}`);
+  let data = await response.json();
+
+  console.log(data);
 }
+
+check_weather();
