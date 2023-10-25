@@ -11,6 +11,16 @@ const api_url = "https://api.openweathermap.org/data/2.5/weather?units=metric";
 const search_box = document.querySelector(".search input");
 const search_button = document.querySelector(".search button");
 
+search_button.addEventListener("click", () => {
+  check_weather(search_box.value);
+});
+
+search_box.addEventListener("keydown", (e) => {
+  if (e.key == "Enter") {
+    check_weather(search_box.value);
+  }
+});
+
 async function check_weather(city_name) {
   const response = await fetch(
     api_url + `&q=${city_name}` + `&appid=${api_key}`
@@ -25,12 +35,4 @@ async function check_weather(city_name) {
   document.querySelector(".wind").innerHTML = data.wind.speed + " Km/h";
 }
 
-search_button.addEventListener("click", () => {
-  check_weather(search_box.value);
-});
-
-search_box.addEventListener("keydown", (e) => {
-  if (e.key == "Enter") {
-    check_weather(search_box.value);
-  }
-});
+window.addEventListener("DOMContentLoaded", check_weather("new delhi"));
