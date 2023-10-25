@@ -28,7 +28,7 @@ async function check_weather(city_name) {
   );
   let data = await response.json();
 
-  console.log(data);
+  // console.log(data);
 
   document.querySelector(".weather_condition").innerHTML = data.weather[0].main;
   document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°C";
@@ -51,6 +51,6 @@ async function check_weather(city_name) {
   } else if (data.weather[0].main == "Haze") {
     weather_icon.src = "images/haze.png";
   }
-}
 
-window.addEventListener("DOMContentLoaded", check_weather("new delhi"));
+  document.querySelector(".weather").style.display = "block";
+}
